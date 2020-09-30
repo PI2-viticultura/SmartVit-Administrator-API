@@ -1,11 +1,11 @@
-from models.contrato import MongoDB
+from models.contract import MongoDB
 
 
 def register_contract_request(request):
     fields = [
         'contratante', 'cpf_cnpj', 'endereco',
         'telefone', 'dataInicio', 'status',
-        'dataFim', 'vinicula'
+        'dataFim', 'vinicola'
     ]
 
     if not all(field in request.keys() for field in fields):
@@ -25,8 +25,8 @@ def register_contract_request(request):
         return {"erro": "Informe o status do contrato"}, 400
     if not request["dataFim"]:
         return {"erro": "Informe a data final do contrato"}, 400
-    if not request["vinicula"]:
-        return {"erro": "Informe os dados da vinicula"}, 400
+    if not request["vinicola"]:
+        return {"erro": "Informe os dados da vinicola"}, 400
 
     db = MongoDB()
 
