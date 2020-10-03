@@ -9,7 +9,10 @@ def register_contract_request(request):
     ]
 
     if not all(field in request.keys() for field in fields):
-        return {"Erro": "Por gentileza, preencha todos os campos para ser enviado o contrato"}, 400
+        return {
+            "Erro":
+            "Por gentileza, preencha todos os campos"
+        }, 400
 
     if not request["contratante"]:
         return {"erro": "Informe o contratante do contrato"}, 400

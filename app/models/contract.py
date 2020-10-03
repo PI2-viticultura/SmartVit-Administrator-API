@@ -1,6 +1,5 @@
 
 from settings import load_database_params
-from utils.constants import DATABASE_CONFIG
 import pymongo
 
 
@@ -8,11 +7,13 @@ class MongoDB():
     def __init__(self):
         self.params = load_database_params()
         try:
-            self.client = pymongo.MongoClient(**self.params, serverSelectionTimeoutMS=10)
+            self.client = pymongo.MongoClient(
+                **self.params, serverSelectionTimeoutMS=10
+            )
 
         except Exception as err:
             print(f'Erro ao conectar no banco de dados: {err}')
-    
+
     def test_connection(self):
         try:
             self.client.server_info()
@@ -26,10 +27,10 @@ class MongoDB():
 
     def get_collection(self):
         db = self.client['smart-dev']
-        collection = db['contratos']
+        collection = db['contracts']
         return collection
-    
-    # Operações 
+
+    # Operações
 
     def insert_one(self, body):
         print(body)
@@ -40,7 +41,7 @@ class MongoDB():
         except Exception as err:
             print(f'Erro ao inserir no banco de dados: {err}')
             return False
-        
+
     def update_one(self, document, body):
         try:
             collection = self.get_collection()
@@ -60,7 +61,7 @@ class MongoDB():
                 print(f'contrato {identifier} removido com sucesso')
             else:
                 print(f'Erro ao remover o contrato {identifier}:'
-                             ' nenhum contrato encontrado para o id')
+                      ' nenhum contrato encontrado para o id')
         except Exception as err:
             print(f'Erro ao deletar no banco de dados: {err}')
 
