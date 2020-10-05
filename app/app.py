@@ -1,9 +1,13 @@
 from flask import Flask
 from flask_cors import CORS
 from views.contract import app as contract
+from views.order import app as order 
 
 app = Flask(__name__)
+
 app.register_blueprint(contract)
+app.register_blueprint(order)
+
 CORS(app, automatic_options=True)
 
 
