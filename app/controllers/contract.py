@@ -1,4 +1,4 @@
-from models.contract import MongoDB
+from models.db import MongoDB
 
 
 def register_contract_request(request):
@@ -35,7 +35,7 @@ def register_contract_request(request):
 
     connection_is_alive = db.test_connection()
     if connection_is_alive:
-        if(db.insert_one(request)):
+        if(db.insert_one(request, 'contracts')):
             return {"message": "Sucess"}, 200
 
     return {'error': 'Something gone wrong'}, 500

@@ -25,26 +25,25 @@ class MongoDB():
     def close_connection(self):
         self.client.close()
 
-    def get_collection(self):
+    def get_collection(self, collection):
         db = self.client['smart-dev']
-        collection = db['contracts']
+        collection = db[collection]
         return collection
 
     # Operações
 
-    def insert_one(self, body):
-        print(body)
+    def insert_one(self, body, collection):
         try:
-            collection = self.get_collection()
+            collection = self.get_collection(collection)
             collection.insert_one(body)
             return True
         except Exception as err:
             print(f'Erro ao inserir no banco de dados: {err}')
             return False
 
-    def update_one(self, document, body):
+    def update_one(self, body, collection):
         try:
-            collection = self.get_collection()
+            collection = self.get_collection(collection)
             collection.update_one(
                 {"id": body["id"]},
                 {"$set": {body}}
@@ -53,19 +52,19 @@ class MongoDB():
         except Exception as err:
             print(f'Erro ao atualizar no banco de dados: {err}')
 
-    def delete_one(self, identifier):
+    def delete_one(self, identifier, collection):
         try:
-            collection = self.get_collection()
+            collection = self.get_collection(collection)
             res = collection.delete_one({"id": identifier})
             if res.deleted_count == 1:
-                print(f'contrato {identifier} removido com sucesso')
+                print(f'Objeto {identifier} removido com sucesso')
             else:
-                print(f'Erro ao remover o contrato {identifier}:'
-                      ' nenhum contrato encontrado para o id')
+                print(f'Erro ao remover o objeto {identifier}:'
+                      ' nenhum objeto com este id encontrado em' + collection)
         except Exception as err:
             print(f'Erro ao deletar no banco de dados: {err}')
 
-    def get_one(self, identifier):
-        collection = self.get_collection()
+    def get_one(self, identifier, collection):
+        collection = self.get_collection(collection)
         document = collection.find_one({"id": identifier})
         return document
