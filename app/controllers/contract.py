@@ -4,7 +4,7 @@ from models.db import MongoDB
 def register_contract_request(request):
     fields = [
         'contractor', 'cpf_cnpj', 'address',
-        'phone', 'initialDate', 'status',
+        'phoneNumber', 'initialDate', 'status',
         'endDate', 'winery'
     ]
 
@@ -20,7 +20,7 @@ def register_contract_request(request):
         return {"erro": "Informe o CPF/CNPJ do contratante"}, 400
     if not request["address"]:
         return {"erro": "Informe o endereco do contratante"}, 400
-    if not request["phone"]:
+    if not request["phoneNumber"]:
         return {"erro": "Informe o telefone do contratante"}, 400
     if not request["initialDate"]:
         return {"erro": "Informe a data de inicio do contrato"}, 400

@@ -34,7 +34,7 @@ class MongoDB():
         try:
             collection = self.get_collection(collection)
             return collection.insert_one(body)
-            
+
         except Exception as err:
             print(f'Erro ao inserir no banco de dados: {err}')
             return False
