@@ -30,13 +30,11 @@ class MongoDB():
         collection = db[collection]
         return collection
 
-    # Operações
-
     def insert_one(self, body, collection):
         try:
             collection = self.get_collection(collection)
-            collection.insert_one(body)
-            return True
+            return collection.insert_one(body)
+            
         except Exception as err:
             print(f'Erro ao inserir no banco de dados: {err}')
             return False
@@ -66,5 +64,5 @@ class MongoDB():
 
     def get_one(self, identifier, collection):
         collection = self.get_collection(collection)
-        document = collection.find_one({"id": identifier})
+        document = collection.find_one({"_id": identifier})
         return document
