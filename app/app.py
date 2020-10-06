@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from views.contract import app as contract
-from views.order import app as order 
+from views.order import app as order
 
 app = Flask(__name__)
 
