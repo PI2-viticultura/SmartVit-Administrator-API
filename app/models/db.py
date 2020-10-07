@@ -66,3 +66,8 @@ class MongoDB():
         collection = self.get_collection(collection)
         document = collection.find_one({"_id": identifier})
         return document
+
+    def get_all(self, collection):
+        collection = self.get_collection(collection)
+        document = collection.find()
+        return document
