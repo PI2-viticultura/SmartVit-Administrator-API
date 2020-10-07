@@ -1,4 +1,5 @@
 from models.db import MongoDB
+from bson.json_util import dumps
 
 
 def register_order_request(request):
@@ -28,5 +29,17 @@ def register_order_request(request):
     if connection_is_alive:
         if(db.insert_one(request, 'orders')):
             return {"message": "Sucess"}, 200
+
+    return {'error': 'Something gone wrong'}, 500
+
+
+def get_orders():
+    db = MongoDB()
+
+    connection_is_alive = db.test_connection()
+    if connection_is_alive:
+        orders = db.get_all('orders')
+        if(orders):
+            return dumps(orders), 200
 
     return {'error': 'Something gone wrong'}, 500
