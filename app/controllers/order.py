@@ -46,13 +46,13 @@ def get_orders():
     return {'error': 'Something gone wrong'}, 500
 
 
-def change_status(id):
-    id = ObjectId(id)
+def change_status(order_id):
+    id_transformed = ObjectId(order_id)
     db = MongoDB()
 
     connection_is_alive = db.test_connection()
     if connection_is_alive:
-        order = db.get_one(id, 'orders')
+        order = db.get_one(id_transformed, 'orders')
 
         if order:
             if (order['status'] == 1):
