@@ -16,3 +16,4 @@ pytest==6.0.2
 coverage
 codacy-coverage
 flake8
+bson
