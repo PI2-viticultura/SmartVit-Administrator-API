@@ -42,13 +42,15 @@ class MongoDB():
     def update_one(self, body, collection):
         try:
             collection = self.get_collection(collection)
-            collection.update_one(
-                {"id": body["id"]},
-                {"$set": {body}}
+            collection.find_one_and_update(
+                {"_id": body["_id"]},
+                {"$set": body}
             )
+            return True
 
         except Exception as err:
             print(f'Erro ao atualizar no banco de dados: {err}')
+            return False
 
     def delete_one(self, identifier, collection):
         try:
