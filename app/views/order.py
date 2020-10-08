@@ -14,3 +14,7 @@ def order():
 @app.route("/orders", methods=["GET"])
 def orders():
     return order_controller.get_orders()
+
+@app.route("/orders/<string:id>", methods=["PATCH"])
+def orders_update_status(id):
+    return order_controller.change_status(id)
