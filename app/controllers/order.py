@@ -2,6 +2,7 @@ from models.db import MongoDB
 from bson.json_util import dumps
 from bson import ObjectId
 
+
 def register_order_request(request):
     fields = [
         'description', 'name', 'email',
@@ -52,16 +53,16 @@ def change_status(id):
     connection_is_alive = db.test_connection()
     if connection_is_alive:
         order = db.get_one(id, 'orders')
-        
+
         if order:
-            if (order['status'] == 1): 
+            if (order['status'] == 1):
                 order['status'] = 0
-            else: 
+            else:
                 order['status'] = 1
-            
+
         retorno = db.update_one(order, 'orders')
-        
-        if retorno: 
+
+        if retorno:
             return {'message': 'Success'}, 200
-        
+
     return {'message': 'Something gone wrong'}, 500
