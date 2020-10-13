@@ -1,12 +1,20 @@
 from flask_pymongo import MongoClient
+from settings import load_database_params
+import pymongo
 import os
 
-password = os.environ["MONGOPASSWORD"]
-dbname = os.environ["DBNAME"]
-env = os.environ["ENVIRONMENT"]
+password = os.getenv("MONGOPASSWORD")
+dbname = os.getenv("DBNAME", "smart-dev")
+env = os.getenv("ENVIRONMENT")
 
-client = MongoClient(
-    "mongodb+srv://smartAdmin:"
-    + password + "@smartvit.6s6r9.mongodb.net/"
-    + dbname + "?retryWrites=true&w=majority"
-)
+if password and dbname:
+    client = MongoClient(
+        "mongodb+srv://smartAdmin:"
+        + password + "@smartvit.6s6r9.mongodb.net/"
+        + dbname + "?retryWrites=true&w=majority"
+    )
+
+else:
+    client = pymongo.MongoClient(
+        **load_database_params(), serverSelectionTimeoutMS=10
+    )
