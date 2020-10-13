@@ -1,18 +1,23 @@
 
 from settings import load_database_params
+from extensions import client
 import pymongo
+import os
 
 
 class MongoDB():
     def __init__(self):
-        self.params = load_database_params()
-        try:
-            self.client = pymongo.MongoClient(
-                **self.params, serverSelectionTimeoutMS=10
-            )
+        if(os.environ['ENVIRONMENT'] != 'developing_local'):
+            self.client = client
+        else:
+            self.params = load_database_params()
+            try:
+                self.client = pymongo.MongoClient(
+                    **self.params, serverSelectionTimeoutMS=10
+                )
 
-        except Exception as err:
-            print(f'Erro ao conectar no banco de dados: {err}')
+            except Exception as err:
+                print(f'Erro ao conectar no banco de dados: {err}')
 
     def test_connection(self):
         try:
@@ -26,7 +31,7 @@ class MongoDB():
         self.client.close()
 
     def get_collection(self, collection):
-        db = self.client['smart-dev']
+        db = self.client[os.environ["DBNAME"]]
         collection = db[collection]
         return collection
 
