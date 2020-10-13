@@ -7,7 +7,7 @@ import os
 
 class MongoDB():
     def __init__(self):
-        if(os.environ['ENVIRONMENT'] != 'developing_local'):
+        if(os.getenv('ENVIRONMENT') != 'developing_local'):
             self.client = client
         else:
             self.params = load_database_params()
@@ -31,7 +31,7 @@ class MongoDB():
         self.client.close()
 
     def get_collection(self, collection):
-        db = self.client[os.environ["DBNAME"]]
+        db = self.client[os.getenv("DBNAME", "smart-dev")]
         collection = db[collection]
         return collection
 
