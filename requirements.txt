@@ -17,3 +17,4 @@ coverage
 codacy-coverage
 flake8
 gunicorn
+behave==1.2.6
