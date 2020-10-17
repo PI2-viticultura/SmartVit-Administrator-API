@@ -13,19 +13,27 @@ before_install:
   - pip install -U pip
   - pip install pytest
 
-script: pytest
-  
+addons:
+  sonarcloud:
+    organization: "pi2-viticultura"
+    token:
+      secure: "fvx/MBHUDtJbP94P/ZicXrFrOEg4lOj0PYg46mb/anMqHiYnOTX4bEtaCDuPbtWXye6ceVBsD/YeUiU1ZVHoxapVhPH8SriaLt9XAxrwVVdi0rUAV9ZwbTYv7gL3dpjFwb3ZEC4Jvz9IYdVDkS9lPCeOyT2BsVK5+NRnfi4NgQYGiR8Rw3np9KBywOeGL73cAf+fpfAam6h/JdRiCNU9xpX5zBvIY/XqTNqcjpUuISfItizwbAtYQAO/3Bn4X4YbG3qsE+LifO94u7g55yJWX97AU8SjXqQkRhE9LufDZhDUMSVkAkYOPAXL3XsNjkq9HXuQ8PwMP1EtgbH4gfj4o6zA3f5qecGvHp3asIePbOh1M/LtyJhWuUUWoVs9ka1EdU331R5PuW+KE9HjAH85USMeT8b7142tQATZnwh2+pLG231yLsVZ/8+nOH19NhWGxxh08ZOcbsykRxjf0xIrphqM61xmbyxe5FoFO4eluDBBEXjUPjeEeVPyevUfhxSrty16/51AkXd5dOePJ6C2u109WrImjtzjpFZivWf4b0wheDGqxCNeW6j5K2LMlbkBK714V+riD0Bw2JpRoyvrYuXpBpXYwtS6BRgSvoT20MejcSZjZybUtqtAMsCYuuyYJa18m1SsMFCZ34QdM/SJsidVoGY+rdjBoLclYV8wJ9I="
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
+
 jobs:
   include:
-      - stage: build
-        script: 
-          - docker build -t smartvit/admin-service .
-      - stage: test
-        script: 
-          - flake8
-          # - pytest
-          # - coverage run -m pytest
-          # - coverage xml
+    - stage: build
+      script:
+        - docker build -t smartvit/admin-service .
+    - stage: test
+      script:
+        - flake8
+        # - pytest
+        # - coverage run -m pytest
+        # - coverage xml
 # after_success:
-  # - python-codacy-coverage -r coverage.xml
+# - python-codacy-coverage -r coverage.xml
 
