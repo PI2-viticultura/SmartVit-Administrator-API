@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route("/contracts", methods=["POST"])
 def contrato():
-    return contract.register_contract_request(request.json)
+    return contract_controller.register_contract_request(request.json)
 
 
 @app.route("/contracts", methods=["GET"])
