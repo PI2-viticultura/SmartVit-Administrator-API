@@ -69,11 +69,11 @@ def change_status(contract_id):
     if connection_is_alive:
         contract = db.get_one(id_transformed, 'contracts')
 
-        if order:
-            if (order['status'] == 1):
-                order['status'] = 0
+        if contract:
+            if (contract['status'] == 1):
+                contract['status'] = 0
             else:
-                order['status'] = 1
+                contract['status'] = 1
 
         retorno = db.update_one(contract, 'contracts')
 
@@ -81,4 +81,3 @@ def change_status(contract_id):
             return {'message': 'Success'}, 200
 
     return {'message': 'Something gone wrong'}, 500
-

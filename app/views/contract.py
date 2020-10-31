@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_cors import CORS
-import controllers.contract as contract
+import controllers.contract as contract_controller
 
 
 app = Blueprint('contract', __name__)
@@ -13,7 +13,7 @@ def contrato():
 
 
 @app.route("/contracts", methods=["GET"])
-def contrato():
+def contratos():
     return contract_controller.get_contracts()
 
 
