@@ -8,4 +8,4 @@ Feature: aptar requisicao feita no frontend e enviar dados do pedido ao microsse
     Scenario: Administrador visualiza os pedidos cadastrados na aplicacao
         Given a pagina de gerenciar pedidos
         When ele visualizar os pedidos desejados
-        Then o bff requisita o microsservico com os pedidos
+        Then pega os pedidos registrados

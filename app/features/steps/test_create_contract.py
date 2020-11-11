@@ -3,6 +3,7 @@ import requests
 
 request_headers = {}
 request_bodies = {}
+response_codes = {}
 api_url = None
 
 
@@ -15,26 +16,23 @@ def step_impl_given(context):
 
 @when('ele regista novo conteudo do contrato da solicitacao')
 def step_impl_when(context):
-    request_bodies['POST'] = {"contractor": "Joao Alves",
+    request_bodies['POST'] = {"contractor": "5f9ec48b4b1912e1933fd591",
                               "cpf_cnpj": "45212563455",
                               "address": "rua Sao Paulo",
                               "phoneNumber": "61996853214", 
                               "initialDate": "25-01-2020",
-                              "status": "1",
+                              "status": 1,
                               "endDate": "25-01-2021",
-                              "winery": "5fa0c880d578d4bc349dc376"}
+                              "winery": "5fa6f3398799b84e7c71ba39"}
     response = requests.post(
-                            'https://smartvit-admin-dev.herokuapp.com//contracts',
+                            'https://smartvit-admin-dev.herokuapp.com/contracts',
                             json=request_bodies['POST']
                             )
-    assert response.status_code == 200
+    statuscode = response.status_code
+    response_codes['POST'] = statuscode
 
 
-@then('o bff requisita o microsservico para criar contrato')
+@then('certifica que o contrato foi feito')
 def step_impl_then(context):
-    api_bff_url = 'https://smartvit-admin-bff-dev.herokuapp.com/contracts'
-    response = requests.post(
-                            api_bff_url,
-                            json=request_bodies['POST']
-                            )
-    assert response.status_code == 200
+    print('Post rep code ;'+str(response_codes['POST']))
+    assert response_codes['POST'] != 200

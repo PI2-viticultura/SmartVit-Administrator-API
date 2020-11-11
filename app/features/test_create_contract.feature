@@ -8,4 +8,6 @@ Feature: criar requisicao e enviar dados do contrato ao microsservico admin-api 
     Scenario: Administrador cadastra os contratos na aplicacao
         Given a pagina de criar novo contrato
         When ele regista novo conteudo do contrato da solicitacao
-        Then o bff requisita o microsservico para criar contrato
+        | contractor | cpf_cnpj    | address       | phoneNumber | initialDate | status | endDate    | winery                   |
+        | Joao Alves | 45212563455 | rua Sao Paulo | 61996853214 | 25-01-2020  | 1      | 25-01-2021 | 5fa6f3398799b84e7c71ba39 |
+        Then certifica que o contrato foi feito

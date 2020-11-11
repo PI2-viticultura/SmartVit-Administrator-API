@@ -3,7 +3,7 @@ import requests
 
 request_headers = {}
 request_bodies = {}
-response_codes ={}
+response_codes = {}
 api_url=None
 
 @given('a pagina de gerenciar contratos')
@@ -20,7 +20,7 @@ def step_impl_when(context):
     response_codes['GET'] = statuscode
 
 
-@then('o bff requisita o microsservico com os contratos')
+@then('pega os contratos cadastrados')
 def step_impl_then(context):
     print('GET rep code ;'+str(response_codes['GET']))
-    assert response_codes['GET'] is 200
+    assert response_codes['GET'] == 200

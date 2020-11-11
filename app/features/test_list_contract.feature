@@ -8,4 +8,4 @@ Feature: aptar requisicao feita no frontend e enviar dados do contrato ao micros
     Scenario: Administrador visualiza os contratos cadastrados na aplicacao
         Given a pagina de gerenciar contratos
         When ele visualizar os contratos desejados
-        Then o bff requisita o microsservico com os contratos
+        Then pega os contratos cadastrados

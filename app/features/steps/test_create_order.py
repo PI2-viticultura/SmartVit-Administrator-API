@@ -3,7 +3,7 @@ import requests
 
 request_headers = {}
 request_bodies = {}
-response_codes ={}
+response_codes = {}
 api_url = None
 
 
@@ -30,7 +30,7 @@ def step_impl_when(context):
     response_codes['POST'] = statuscode
 
 
-@then('o bff requisita o microsservico para criar pedido')
+@then('certifica que o pedido foi feito')
 def step_impl_then(context):
     print('Post rep code ;'+str(response_codes['POST']))
-    assert response_codes['POST'] is 200
+    assert response_codes['POST'] == 200
