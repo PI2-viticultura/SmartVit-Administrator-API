@@ -19,7 +19,7 @@ def step_impl_when(context):
     request_bodies['POST'] = {"description": "Testar bdd",
                               "name": "Joao Ninguem",
                               "email": "test@gmail.com",
-                              "phoneNumber": "61996853214", 
+                              "phoneNumber": "61996853214",
                               "status": "0"}
     response = requests.post(
                             'https://smartvit-admin-dev.herokuapp.com/order',

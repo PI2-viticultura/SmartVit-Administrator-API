@@ -19,7 +19,7 @@ def step_impl_when(context):
     request_bodies['POST'] = {"contractor": "5f9ec48b4b1912e1933fd591",
                               "cpf_cnpj": "45212563455",
                               "address": "rua Sao Paulo",
-                              "phoneNumber": "61996853214", 
+                              "phoneNumber": "61996853214",
                               "initialDate": "25-01-2020",
                               "status": 1,
                               "endDate": "25-01-2021",
