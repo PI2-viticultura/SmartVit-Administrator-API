@@ -4,7 +4,8 @@ import requests
 request_headers = {}
 request_bodies = {}
 response_codes = {}
-api_url=None
+api_url = None
+
 
 @given('a pagina de gerenciar contratos')
 def step_impl_given(context):
@@ -12,10 +13,10 @@ def step_impl_given(context):
     api_url = 'https://smartvit-admin-dev.herokuapp.com/contracts'
     print('url :'+api_url)
 
+
 @when('ele visualizar os contratos desejados')
 def step_impl_when(context):
-    response = requests.get('https://smartvit-admin-dev.herokuapp.com/contracts')
-    #assert response.status_code == 200
+    response = requests.get(api_url)
     statuscode = response.status_code
     response_codes['GET'] = statuscode
 

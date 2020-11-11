@@ -25,7 +25,7 @@ def step_impl_when(context):
                               "endDate": "25-01-2021",
                               "winery": "5fa6f3398799b84e7c71ba39"}
     response = requests.post(
-                            'https://smartvit-admin-dev.herokuapp.com/contracts',
+                            api_url,
                             json=request_bodies['POST']
                             )
     statuscode = response.status_code

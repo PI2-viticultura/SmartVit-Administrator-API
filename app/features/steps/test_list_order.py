@@ -1,8 +1,8 @@
 from behave import given, when, then
 import requests
 
-api_url=None
-
+api_url = None
+bff_url = None
 
 @given('a pagina de gerenciar pedidos')
 def step_impl_given(context):
@@ -19,5 +19,7 @@ def step_impl_when(context):
 
 @then('pega os pedidos registrados')
 def step_impl_then(context):
-    response = requests.get('https://smartvit-admin-bff-dev.herokuapp.com/orders')
+    global bff_url
+    bff_url = 'https://smartvit-admin-bff-dev.herokuapp.com/orders'
+    response = requests.get(bff_url)
     assert response.status_code == 200

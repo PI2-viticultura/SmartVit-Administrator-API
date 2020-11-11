@@ -25,7 +25,6 @@ def step_impl_when(context):
                             'https://smartvit-admin-dev.herokuapp.com/order',
                             json=request_bodies['POST']
                             )
-    #assert response.status_code == 200
     statuscode = response.status_code
     response_codes['POST'] = statuscode
 
