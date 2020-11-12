@@ -10,20 +10,20 @@ api_url = None
 @given('a pagina de criar novo contrato')
 def step_impl_given(context):
     global api_url
-    api_url = 'https://smartvit-admin-dev.herokuapp.com/contracts'
+    api_url = 'https://smartvit-admin-stg.herokuapp.com/contracts'
     print('url :'+api_url)
 
 
 @when('ele regista novo conteudo do contrato da solicitacao')
 def step_impl_when(context):
-    request_bodies['POST'] = {"contractor": "5f9ec48b4b1912e1933fd591",
+    request_bodies['POST'] = {"address": "rua Sao Paulo",
+                              "contractor": "unb@unb.com.br",
                               "cpf_cnpj": "45212563455",
-                              "address": "rua Sao Paulo",
+                              "initialDate": "2020-11-09",
                               "phoneNumber": "61996853214",
-                              "initialDate": "25-01-2020",
-                              "status": 1,
-                              "endDate": "25-01-2021",
-                              "winery": "5fa6f3398799b84e7c71ba39"}
+                              "status": "1",
+                              "endDate": "2021-11-09",
+                              "winery": "5fad331b38b2670687db57e2"}
     response = requests.post(
                             api_url,
                             json=request_bodies['POST']

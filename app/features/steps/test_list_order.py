@@ -4,6 +4,7 @@ import requests
 api_url = None
 bff_url = None
 
+
 @given('a pagina de gerenciar pedidos')
 def step_impl_given(context):
     global api_url

@@ -10,19 +10,19 @@ api_url = None
 @given('a pagina de criar novo pedido')
 def step_impl_given(context):
     global api_url
-    api_url = 'https://smartvit-admin-dev.herokuapp.com/order'
+    api_url = 'https://smartvit-admin-stg.herokuapp.com/order'
     print('url :'+api_url)
 
 
 @when('ele regista novo conteudo do pedido da solicitacao')
 def step_impl_when(context):
-    request_bodies['POST'] = {"description": "Testar bdd",
-                              "name": "Joao Ninguem",
-                              "email": "test@gmail.com",
-                              "phoneNumber": "61996853214",
+    request_bodies['POST'] = {"description": "Testando",
+                              "name": "Joao Lucas",
+                              "email": "joao@gmail.com",
+                              "phoneNumber": "61984285569",
                               "status": "0"}
     response = requests.post(
-                            'https://smartvit-admin-dev.herokuapp.com/order',
+                            'https://smartvit-admin-stg.herokuapp.com/order',
                             json=request_bodies['POST']
                             )
     statuscode = response.status_code
