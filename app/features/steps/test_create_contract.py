@@ -16,14 +16,14 @@ def step_impl_given(context):
 
 @when('ele regista novo conteudo do contrato da solicitacao')
 def step_impl_when(context):
-    request_bodies['POST'] = {"address": "rua Sao Paulo",
-                              "contractor": "unb@unb.com.br",
+    request_bodies['POST'] = {"contractor": "joaoalves@gmail.com",
+                              "winery": {"name": "hojevai"},
                               "cpf_cnpj": "45212563455",
-                              "initialDate": "2020-11-09",
+                              "address": "rua Sao Paulo",
                               "phoneNumber": "61996853214",
+                              "initialDate": "25-01-2020",
                               "status": "1",
-                              "endDate": "2021-11-09",
-                              "winery": "5fad331b38b2670687db57e2"}
+                              "endDate": "25-01-2020"}
     response = requests.post(
                             api_url,
                             json=request_bodies['POST']
@@ -35,4 +35,4 @@ def step_impl_when(context):
 @then('certifica que o contrato foi feito')
 def step_impl_then(context):
     print('Post rep code ;'+str(response_codes['POST']))
-    assert response_codes['POST'] != 200
+    assert response_codes['POST'] == 200
