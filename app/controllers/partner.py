@@ -1,6 +1,7 @@
 from models.db import MongoDB
 from bson.json_util import dumps
 
+
 def register_partner_request(request):
     fields = [
         'name', 'address',
@@ -32,6 +33,7 @@ def register_partner_request(request):
         return {"message": "Sucess"}, 200
 
     return {'error': 'Something gone wrong'}, 500
+
 
 def get_partners():
     db = MongoDB()
